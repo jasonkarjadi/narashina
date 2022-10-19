@@ -1,3 +1,7 @@
+const dev = process.env.NODE_ENV !== "production";
+
+export const server = dev ? "http://localhost:3000" : "https://alvacorre.com";
+
 export const navbtnvals = [
   {
     link: "/books",
