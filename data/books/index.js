@@ -9,6 +9,7 @@ const books = [
     month: 12,
     date: 10,
     marks: [3, 4],
+    ratio: 1.4142,
     pages: [
       { id: 1, background: "#975A16" },
       { id: 2 },

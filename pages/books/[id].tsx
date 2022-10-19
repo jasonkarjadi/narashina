@@ -5,6 +5,7 @@ import Head from "next/head";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import MyPage from "../../components/Page";
 import { colorschemes, fontfamilies } from "../../constants";
+import books from "../../data/books";
 import { Book } from "../../types";
 
 interface MyBookProps {
@@ -194,18 +195,14 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`http://localhost:3000/api/books`);
-  const books = await res.json();
-
   return {
-    paths: books.map((book: any) => ({ params: { id: `${book.id}` } })),
+    paths: books.map((book) => ({ params: { id: `${book.id}` } })),
     fallback: false,
   };
 }; // later feature idea: add query for page number
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`http://localhost:3000/api/books/${params!.id}`);
-  const book = await res.json();
+  const book = books.filter((book) => book.id.toString() == params!.id)[0];
 
   return {
     props: { book },
