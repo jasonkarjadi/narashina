@@ -86,11 +86,11 @@ const MyIndex: FC = () => {
         @media only screen and (min-width: 730px) {
           .maincenter {
             flex-direction: column;
-            margin: 0 22rem;
+            margin: auto;
           }
           .frontnav {
             display: grid;
-            grid-template: auto auto / 8rem 8rem;
+            grid-template: 12rem 12rem / 8rem 8rem;
             margin-bottom: 0;
             margin-right: 4rem;
             gap: 4rem;
