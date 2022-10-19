@@ -12,3 +12,14 @@ export const navbtnvals = [
 ];
 
 export const fontfamilies = ["Noto Serif JP", "Shippori Mincho"];
+
+export const colorschemes = [
+  {
+    text: "黒字白紙",
+    values: ["#000000", "#e0e2dc"],
+  },
+  {
+    text: "白字黒紙",
+    values: ["#cbd5e0", "#0e0e10"],
+  },
+];

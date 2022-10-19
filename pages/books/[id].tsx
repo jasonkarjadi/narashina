@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import MyPage from "../../components/Page";
-import { fontfamilies } from "../../constants";
+import { colorschemes, fontfamilies } from "../../constants";
 import { Book } from "../../types";
 
 interface MyBookProps {
@@ -17,6 +17,7 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
   const [pageHeight, setPageHeight] = useState(0);
   const [pageWidth, setPageWidth] = useState(0);
   const [pageRatio, _setPageRatio] = useState(book.ratio || 1.4142);
+  const [pageColors, setPageColors] = useState(["#000000", "#e0e2dc"]);
 
   useEffect(() => {
     const setResize = () => {
@@ -34,8 +35,12 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
     };
   }, [pageHeight, pageRatio]);
 
-  const changeFF = (e: ChangeEvent<HTMLSelectElement>) => {
+  const changeFontFamily = (e: ChangeEvent<HTMLSelectElement>) => {
     setFontFamily(e.target.value);
+  };
+
+  const changeColor = (e: ChangeEvent<HTMLSelectElement>) => {
+    setPageColors(e.target.value.split(","));
   };
 
   const changePage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +58,11 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
           <label className="adjustlabel" htmlFor="fontFamily">
             書体
           </label>
-          <select className="adjustitem" id="fontFamily" onChange={changeFF}>
+          <select
+            className="adjustitem"
+            id="fontFamily"
+            onChange={changeFontFamily}
+          >
             {fontfamilies.map((ff, id) => (
               <option key={id} value={ff}>
                 {ff}
@@ -63,9 +72,16 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
           <label className="adjustlabel" htmlFor="colorScheme">
             配色
           </label>
-          <select className="adjustitem" id="colorScheme">
-            <option value="#e0e2dc">黒字白紙</option>
-            <option value="whiteonblack">白字黒紙</option>
+          <select
+            className="adjustitem"
+            id="colorScheme"
+            onChange={changeColor}
+          >
+            {colorschemes.map((clr, id) => (
+              <option key={id} value={`${clr.values[0]},${clr.values[1]}`}>
+                {clr.text}
+              </option>
+            ))}
           </select>
         </div>
         <div className="pagedisplay">
@@ -77,6 +93,7 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
               pageHeight={pageHeight}
               pageWidth={pageWidth}
               fontFamily={fontFamily}
+              colors={pageColors}
             />
           ))}
         </div>

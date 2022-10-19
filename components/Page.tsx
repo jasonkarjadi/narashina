@@ -7,6 +7,7 @@ interface MyPageProps {
   pageHeight: number;
   pageWidth: number;
   fontFamily: string;
+  colors: string[];
 }
 
 const MyPage: FC<MyPageProps> = ({
@@ -15,6 +16,7 @@ const MyPage: FC<MyPageProps> = ({
   pageHeight,
   pageWidth,
   fontFamily,
+  colors,
 }) => {
   const filtered = pages.filter((page) => page.id == pageId)[0];
 
@@ -30,16 +32,17 @@ const MyPage: FC<MyPageProps> = ({
         <style jsx>{`
           .paper {
             writing-mode: vertical-rl;
-            border-left: solid black 1px;
-            border-right: solid black 1px;
+            border-left: solid ${colors[0]} 1px;
+            border-right: solid ${colors[0]} 1px;
             background: ${filtered.background
               ? filtered.background
-              : "#e0e2dc"};
+              : colors[1]};
             padding: 4rem 2rem;
             font-family: ${fontFamily};
             font-size: 1.78vh;
             width: 100%;
             height: 100%;
+            color: ${colors[0]};
           }
         `}</style>
         <style jsx global>{`
@@ -47,10 +50,10 @@ const MyPage: FC<MyPageProps> = ({
             color: brown;
           }
           .border-5 {
-            border: solid black 5px;
+            border: solid ${colors[0]} 5px;
           }
           .border-r {
-            border-right: solid black 1px;
+            border-right: solid ${colors[0]} 1px;
           }
           .flex {
             display: flex;
