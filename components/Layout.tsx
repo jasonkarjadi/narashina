@@ -155,18 +155,14 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
             display: flex;
             position: static;
             border-bottom: none;
-            width: auto;
+            width: 20rem;
+            justify-content: space-evenly;
           }
           .headernavlink {
-            width: 4.5rem;
             height: auto;
             border-left: none;
-          }
-          .navkanji {
-            margin-right: 0;
-          }
-          .navruby {
-            line-height: 1;
+            width: 4.5rem;
+            flex: initial;
           }
         }
       `}</style>
