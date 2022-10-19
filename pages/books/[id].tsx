@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import MyPage from "../../components/Page";
-import { colorschemes, fontfamilies, server } from "../../constants";
+import { colorschemes, fontfamilies } from "../../constants";
 import { Book } from "../../types";
 
 interface MyBookProps {
@@ -194,7 +194,7 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${server}/api/books`);
+  const res = await fetch(`http://localhost:3000/api/books`);
   const books = await res.json();
 
   return {
@@ -204,7 +204,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }; // later feature idea: add query for page number
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`${server}/api/books/${params!.id}`);
+  const res = await fetch(`http://localhost:3000/api/books/${params!.id}`);
   const book = await res.json();
 
   return {

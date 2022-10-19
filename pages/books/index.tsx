@@ -2,7 +2,6 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { FC } from "react";
-import { server } from "../../constants";
 import { Book } from "../../types";
 
 interface MyBooksProps {
@@ -67,7 +66,7 @@ const MyBooks: FC<MyBooksProps> = ({ books }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`${server}/api/books`);
+  const res = await fetch(`http://localhost:3000/api/books`);
   const books = await res.json();
 
   return {
