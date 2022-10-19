@@ -10,3 +10,5 @@ export const navbtnvals = [
     kanji: "荒",
   },
 ];
+
+export const fontfamilies = ["Noto Serif JP", "Shippori Mincho"];

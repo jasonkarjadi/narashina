@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import MyPage from "../../components/Page";
+import { fontfamilies } from "../../constants";
 import { Book } from "../../types";
 
 interface MyBookProps {
@@ -33,6 +34,15 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
     };
   }, [pageHeight, pageRatio]);
 
+  const changeFF = (e: ChangeEvent<HTMLSelectElement>) => {
+    setFontFamily(e.target.value);
+  };
+
+  const changePage = (e: ChangeEvent<HTMLInputElement>) => {
+    const valx = 2 * parseInt(e.target.value);
+    setPageIds([valx + 1, valx]);
+  };
+
   return (
     <>
       <Head>
@@ -43,8 +53,12 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
           <label className="adjustlabel" htmlFor="fontFamily">
             書体
           </label>
-          <select className="adjustitem" id="fontFamily">
-            <option value="Noto Serif JP, serif">Noto Serif JP</option>
+          <select className="adjustitem" id="fontFamily" onChange={changeFF}>
+            {fontfamilies.map((ff, id) => (
+              <option key={id} value={ff}>
+                {ff}
+              </option>
+            ))}
           </select>
           <label className="adjustlabel" htmlFor="colorScheme">
             配色
@@ -87,10 +101,7 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
               value={pageIds[1] / 2}
               className="pageslider"
               list="bookmarks"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                const valx = 2 * parseInt(e.target.value);
-                setPageIds([valx + 1, valx]);
-              }}
+              onChange={changePage}
             />
           </div>
           <button
