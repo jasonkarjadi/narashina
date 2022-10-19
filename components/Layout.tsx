@@ -1,4 +1,8 @@
-import { faBars, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faChevronDown,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -11,6 +15,7 @@ interface MyLayoutProps {
 
 const MyLayout: FC<MyLayoutProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
   const { pathname } = useRouter();
 
   useEffect(() => {
@@ -18,33 +23,53 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
     return () => {};
   }, [pathname]);
 
+  useEffect(() => {
+    const setResize = () => setWindowWidth(innerWidth);
+    setResize();
+    addEventListener("resize", setResize);
+    return () => {
+      removeEventListener("resize", setResize);
+    };
+  }, []);
+
   return (
     <div className="thediv">
       <header className="topheader">
         <Link href="/">ならしな</Link>
-        <button
-          className="hamburgerbtn"
-          onClick={() => setIsOpen((isOpen) => !isOpen)}
-        >
-          <FontAwesomeIcon icon={isOpen ? faChevronDown : faBars} />
-        </button>
+        <div className="headernavcontainer">
+          <button
+            className="hamburgerbtn"
+            onClick={() => setIsOpen((isOpen) => !isOpen)}
+          >
+            <FontAwesomeIcon
+              icon={
+                isOpen
+                  ? windowWidth > 730
+                    ? faChevronLeft
+                    : faChevronDown
+                  : faBars
+              }
+            />
+          </button>
+          <div className="headernav">
+            {navbtnvals.map((val, id) => (
+              <Link key={id} href={val.link}>
+                <button className="headernavlink">
+                  <p className="navkanji">{val.kanji}</p>
+                  <p className="navruby">{val.ruby}</p>
+                </button>
+              </Link>
+            ))}
+            <button className="headernavlink" />
+            <button className="headernavlink" />
+          </div>
+        </div>
       </header>
       <div className="childrenbox">{children}</div>
       <footer className="bottomfooter">
         <small>Copyright &copy; 2022 Jason Karjadi. All rights reserved</small>
       </footer>
-      <div className="headernav">
-        {navbtnvals.map((val, id) => (
-          <Link key={id} href={val.link}>
-            <button className="headernavlink">
-              <p className="navkanji">{val.kanji}</p>
-              <p className="navruby">{val.ruby}</p>
-            </button>
-          </Link>
-        ))}
-        <button className="headernavlink" />
-        <button className="headernavlink" />
-      </div>
+
       <style jsx>{`
         .thediv {
           min-height: 100vh;
@@ -66,6 +91,11 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
         }
         .bottomfooter {
           border-top: 1px solid black;
+        }
+        .headernavcontainer {
+          height: 100%;
+          display: flex;
+          flex-direction: row-reverse;
         }
         .hamburgerbtn {
           background: transparent;
@@ -116,6 +146,23 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
         @media only screen and (min-width: 730px) {
           .hamburgerbtn {
             display: none;
+          }
+          .headernav {
+            display: flex;
+            position: static;
+            border-bottom: none;
+            width: auto;
+          }
+          .headernavlink {
+            width: 4.5rem;
+            height: auto;
+            border-left: none;
+          }
+          .navkanji {
+            margin-right: 0;
+          }
+          .navruby {
+            line-height: 1;
           }
         }
       `}</style>
