@@ -124,6 +124,7 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           border-left: solid black 1px;
           flex: 1;
           justify-content: center;
+          padding: 0;
         }
         .headernavlink:last-child {
           border-left: none;
@@ -132,8 +133,11 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           font-family: Zen Antique, serif;
           color: #000000;
           font-size: 1.5rem;
-          margin-right: 0.25rem;
+          margin-right: 0.125rem;
           height: 100%;
+        }
+        .navruby {
+          font-size: 0.625rem;
         }
         .childrenbox {
           flex: auto;
