@@ -22,11 +22,10 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
 
   useEffect(() => {
     const setResize = () => {
-      setPageHeight(
-        document
-          .getElementsByClassName("pagedisplay")[0]
-          .getBoundingClientRect().height
-      );
+      const xHeight = document
+        .getElementsByClassName("pagespace")[0]
+        .getBoundingClientRect().height;
+      setPageHeight(xHeight);
       setPageWidth(pageHeight / pageRatio);
     };
     setResize();
@@ -85,18 +84,20 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
             ))}
           </select>
         </div>
-        <div className="pagedisplay">
-          {pageIds.map((pid, id) => (
-            <MyPage
-              key={id}
-              pages={book.pages}
-              pageId={pid}
-              pageHeight={pageHeight}
-              pageWidth={pageWidth}
-              fontFamily={fontFamily}
-              colors={pageColors}
-            />
-          ))}
+        <div className="pagespace">
+          <div className="pageholder">
+            {pageIds.map((pid, id) => (
+              <MyPage
+                key={id}
+                pages={book.pages}
+                pageId={pid}
+                pageHeight={pageHeight}
+                pageWidth={pageWidth}
+                fontFamily={fontFamily}
+                colors={pageColors}
+              />
+            ))}
+          </div>
         </div>
         <div className="pagenav">
           <button
@@ -154,12 +155,16 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
         .adjustitem + .adjustlabel {
           margin-left: 2rem;
         }
-        .pagedisplay {
+        .pagespace {
           flex: 1;
+          background: #171923;
+          overflow-x: auto;
+          padding: 0 0.75rem;
+        }
+        .pageholder {
+          min-width: ${pageWidth * 2}px;
           display: flex;
           justify-content: center;
-          background: #171923;
-          // overflow-x: auto;
         }
         .pagenav {
           border-top: solid black 1px;
