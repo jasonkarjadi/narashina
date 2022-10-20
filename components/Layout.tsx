@@ -1,8 +1,4 @@
-import {
-  faBars,
-  faChevronDown,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -15,7 +11,6 @@ interface MyLayoutProps {
 
 const MyLayout: FC<MyLayoutProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
   const { pathname } = useRouter();
 
   useEffect(() => {
@@ -24,7 +19,12 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
   }, [pathname]);
 
   useEffect(() => {
-    const setResize = () => setWindowWidth(innerWidth);
+    const setResize = () => {
+      document.documentElement.style.setProperty(
+        "--doc-height",
+        `${innerHeight}px`
+      );
+    };
     setResize();
     addEventListener("resize", setResize);
     return () => {
@@ -35,21 +35,15 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
   return (
     <div className="thediv">
       <header className="topheader">
-        <Link href="/">ならしな</Link>
+        <Link href="/">
+          <a className="homelink">ならしな</a>
+        </Link>
         <div className="headernavcontainer">
           <button
             className="hamburgerbtn"
             onClick={() => setIsOpen((isOpen) => !isOpen)}
           >
-            <FontAwesomeIcon
-              icon={
-                isOpen
-                  ? windowWidth > 730
-                    ? faChevronLeft
-                    : faChevronDown
-                  : faBars
-              }
-            />
+            <FontAwesomeIcon icon={isOpen ? faChevronDown : faBars} />
           </button>
           <div className="headernav">
             {navbtnvals.map((val, id) => (
@@ -67,12 +61,16 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
       </header>
       <div className="childrenbox">{children}</div>
       <footer className="bottomfooter">
-        <small>Copyright &copy; 2022 Jason Karjadi. All rights reserved</small>
+        <small>&copy; 2022 Jason Karjadi. All rights reserved</small>
       </footer>
 
       <style jsx>{`
+        :root {
+          --doc-height: 100%;
+        }
         .thediv {
           min-height: 100vh;
+          min-height: var(--doc-height);
           display: flex;
           flex-direction: column;
         }
@@ -82,15 +80,21 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           background: #9c4221;
           display: flex;
           align-items: center;
-          padding-left: 0.5rem;
           justify-content: space-between;
         }
         .topheader {
           border-bottom: 1px solid black;
-          font-family: Noto Serif JP, serif;
         }
         .bottomfooter {
           border-top: 1px solid black;
+          padding: 0 0.75rem;
+        }
+        .homelink {
+          height: 100%;
+          padding: 0 0.75rem;
+          display: flex;
+          align-items: center;
+          font-family: Zen Antique;
         }
         .headernavcontainer {
           height: 100%;
@@ -100,8 +104,8 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
         .hamburgerbtn {
           background: transparent;
           height: 100%;
-          width: 2rem;
           border: none;
+          padding: 0 0.75rem;
         }
         .headernav {
           position: absolute;
@@ -264,12 +268,11 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           border-collapse: collapse;
           border-spacing: 0;
         }
-        button {
-          cursor: pointer;
-        }
+        button,
         a {
+          cursor: pointer;
+          color: #000000;
           text-decoration: none;
-          color: black;
         }
       `}</style>
     </div>

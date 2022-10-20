@@ -34,7 +34,7 @@ const MyIndex: FC = () => {
           flex: 1;
           writing-mode: vertical-rl;
           display: flex;
-          margin: 0 2rem;
+          margin: 0 2.5rem;
           align-items: center;
         }
         .headingbox {
