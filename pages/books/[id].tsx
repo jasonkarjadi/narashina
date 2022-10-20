@@ -151,6 +151,7 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
         }
         .adjustlabel {
           margin-right: 0.5rem;
+          font-family: Noto Serif JP;
         }
         .adjustitem + .adjustlabel {
           margin-left: 2rem;
