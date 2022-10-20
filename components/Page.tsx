@@ -23,13 +23,17 @@ const MyPage: FC<MyPageProps> = ({
   if (filtered) {
     return (
       <>
-        <div style={{ width: pageWidth, height: pageHeight }} className="page">
+        <div className="page">
           <div
             className="paper"
             dangerouslySetInnerHTML={{ __html: filtered.body || "" }} // to adjust page height properly, might need viewport height instead
           />
         </div>
         <style jsx>{`
+          .page {
+            width: ${pageWidth}px;
+            height: ${pageHeight}px;
+          }
           .paper {
             writing-mode: vertical-rl;
             border-left: solid ${colors[0]} 1px;
@@ -78,7 +82,15 @@ const MyPage: FC<MyPageProps> = ({
     );
   } else {
     return (
-      <div style={{ width: pageWidth, height: pageHeight }} className="page" />
+      <>
+        <div className="page" />
+        <style jsx>{`
+          .page {
+            width: ${pageWidth}px;
+            height: ${pageHeight}px;
+          }
+        `}</style>
+      </>
     );
   }
 };
