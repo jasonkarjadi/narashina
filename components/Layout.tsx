@@ -152,6 +152,9 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           height: 100%;
         }
         @media only screen and (min-width: 730px) {
+          .thediv {
+            min-height: 100vh;
+          }
           .hamburgerbtn {
             display: none;
           }

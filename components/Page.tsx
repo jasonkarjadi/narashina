@@ -77,6 +77,16 @@ const MyPage: FC<MyPageProps> = ({
           .font-normal {
             font-weight: normal;
           }
+          .autofill-dots {
+            border-left: 2px dotted ${colors[0]};
+            display: inline-block;
+          }
+          .text-xs {
+            font-size: 0.75rem;
+          }
+          .flex-1 {
+            flex: 1;
+          }
         `}</style>
       </>
     );

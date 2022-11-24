@@ -195,6 +195,11 @@ const MyBook: FC<MyBookProps> = ({ book }) => {
           transform: rotate(180deg);
           cursor: pointer;
         }
+        @media only screen and (min-width: 730px) {
+          .pagespace::-webkit-scrollbar {
+            display: none;
+          }
+        }
       `}</style>
     </>
   );
