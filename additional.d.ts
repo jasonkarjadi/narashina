@@ -1,1 +1,1 @@
-/// <reference types="styled-jsx" />
+/// <reference types="sass" />

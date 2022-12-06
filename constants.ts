@@ -1,3 +1,5 @@
+import { Noto_Serif_JP, Zen_Antique, Shippori_Mincho } from "@next/font/google";
+
 export const navbtnvals = [
   {
     link: "/books",
@@ -11,15 +13,21 @@ export const navbtnvals = [
   },
 ];
 
-export const fontfamilies = ["Noto Serif JP", "Shippori Mincho"];
-
-export const colorschemes = [
-  {
-    text: "黒字白紙",
-    values: ["#000000", "#e0e2dc"],
-  },
-  {
-    text: "白字黒紙",
-    values: ["#cbd5e0", "#0e0e10"],
-  },
-];
+export const zen_antique = Zen_Antique({
+  weight: ["400"],
+  display: "swap",
+  subsets: ["japanese"],
+  variable: "--font-zen-antique",
+});
+export const noto_serif_jp = Noto_Serif_JP({
+  weight: ["200", "300", "400", "500", "600", "700", "900"],
+  display: "swap",
+  subsets: ["japanese"],
+  variable: "--font-noto-serif-jp",
+});
+export const shippori_mincho = Shippori_Mincho({
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  subsets: ["japanese"],
+  variable: "--font-shippori-mincho",
+});

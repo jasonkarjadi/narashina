@@ -1,20 +1,27 @@
 export type ForeignText = { original: string; romanized: string };
 
+export type Elem = {
+  tag: string;
+  className?: string;
+  content: string | Elem[];
+};
+
 export type Page = {
-  id: number;
+  id: number | string;
   background?: string;
-  body?: string;
+  pagemark?: string;
+  body?: Elem[];
 };
 
 export type Book = {
-  id: number;
+  id: number | string;
   title: ForeignText;
   author: ForeignText;
   publisher: ForeignText;
   note?: string;
-  year: number;
-  month?: number;
-  date?: number;
+  year: number | string;
+  month: number | string;
+  date: number | string;
   ratio: number;
   marks: number[];
   pages: Page[];

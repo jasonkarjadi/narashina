@@ -1,0 +1,93 @@
+@use "variables.module";
+
+.maincenter {
+  margin: 0 2.5rem;
+  align-items: center;
+  writing-mode: vertical-rl;
+
+  @media only screen and (min-width: variables.$breakpoint-desktop) {
+    flex-direction: column;
+    margin: auto;
+  }
+
+  // heading box
+  > section {
+    text-align: center;
+    flex: 1;
+
+    // front heading
+    > h1 {
+      font-size: 5rem;
+      font-family: var(--font-zen-antique), serif;
+      font-weight: bold;
+    }
+
+    // front subtitle
+    > h2 {
+      font-size: 2rem;
+      font-family: var(--font-noto-serif-jp), serif;
+    }
+  }
+
+  // front nav
+  > nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 3rem;
+
+    @media only screen and (min-width: variables.$breakpoint-desktop) {
+      display: grid;
+      grid-template: 12rem 12rem / 8rem 8rem;
+      margin-bottom: 0;
+      margin-right: 4rem;
+      gap: 4rem;
+    }
+
+    > button {
+      background: #9c4221;
+      border: 1px solid black;
+      border-radius: 0.75rem;
+      position: relative;
+      flex: 1;
+      height: 4.5rem;
+      padding: 0;
+
+      @media only screen and (min-width: variables.$breakpoint-desktop) {
+        height: auto;
+      }
+
+      > span {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 100%;
+
+        .navkanji {
+          font-family: var(--font-zen-antique), serif;
+          font-size: 2rem;
+
+          @media only screen and (min-width: variables.$breakpoint-desktop) {
+            font-size: 2.5rem;
+          }
+        }
+
+        .navruby {
+          font-family: var(--font-noto-serif-jp), serif;
+          font-size: 0.625rem;
+
+          @media only screen and (min-width: variables.$breakpoint-desktop) {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    > button + button {
+      margin-right: 1rem;
+
+      @media only screen and (min-width: variables.$breakpoint-desktop) {
+        margin-right: 0;
+      }
+    }
+  }
+}
