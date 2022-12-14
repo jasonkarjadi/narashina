@@ -2,14 +2,14 @@ import { Noto_Serif_JP, Zen_Antique, Shippori_Mincho } from "@next/font/google";
 
 export const navbtnvals = [
   {
-    link: "/books",
-    ruby: "ふみぐら",
-    kanji: "文",
-  },
-  {
     link: "/about",
     ruby: "あらまし",
     kanji: "荒",
+  },
+  {
+    link: "/books",
+    ruby: "ふみぐら",
+    kanji: "文",
   },
 ];
 

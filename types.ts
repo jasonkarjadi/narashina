@@ -26,3 +26,7 @@ export type Book = {
   marks: number[];
   pages: Page[];
 };
+
+export type Params = {
+  [key: string]: string | string[] | undefined;
+};

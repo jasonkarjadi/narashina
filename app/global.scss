@@ -88,7 +88,7 @@ video {
 
 html,
 body {
-  background: #fbd38d;
+  background: variables.$color-six;
 }
 
 ol,
@@ -199,8 +199,8 @@ body {
 
   header,
   footer {
-    height: 2.5rem;
-    background: #9c4221;
+    height: 3rem;
+    background: variables.$color-three;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -208,10 +208,10 @@ body {
 
   header {
     border-bottom: 1px solid black;
+    padding: 0 0.75rem;
 
     > a {
       height: 100%;
-      padding: 0 0.75rem;
       display: flex;
       align-items: center;
       font-family: var(--font-zen-antique), serif;
@@ -221,10 +221,134 @@ body {
   main {
     flex: 1;
     display: flex;
+    flex-direction: column;
   }
 
   footer {
     border-top: 1px solid black;
     padding: 0 0.75rem;
+  }
+}
+
+.adjustbar,
+.pagenav {
+  display: flex;
+  height: 2.5rem;
+  align-items: center;
+}
+
+.adjustbar {
+  border-bottom: solid black 1px;
+  justify-content: center;
+
+  > label {
+    margin-right: 0.5rem;
+    font-family: var(--font-noto-serif-jp), serif;
+  }
+  > select + label {
+    margin-left: 2rem;
+  }
+}
+
+.pagewrap {
+  flex: 1;
+  background: #171923;
+  overflow-x: auto;
+  display: flex;
+  padding: 0 0.75rem;
+
+  // book page
+  > div {
+    position: relative;
+    min-width: var(--bookpage-width);
+
+    // book paper
+    > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      writing-mode: vertical-rl;
+      white-space: pre-wrap;
+      border-style: none solid;
+      border-width: 1px;
+    }
+  }
+
+  > div:first-child {
+    margin-left: auto;
+  }
+
+  > div:last-child {
+    margin-right: auto;
+  }
+}
+
+.黒字白紙 {
+  .pagewrap {
+    > div {
+      > div {
+        color: #000000;
+        background-color: #e0e2dc;
+        border-color: #000000;
+      }
+    }
+  }
+}
+
+.白字黒紙 {
+  .pagewrap {
+    > div {
+      > div {
+        color: #cbd5e0;
+        background-color: #0e0e10;
+        border-color: #cbd5e0;
+      }
+    }
+  }
+}
+
+.pagenav {
+  border-top: solid black 1px;
+
+  // page nav button
+  > button {
+    height: 100%;
+    width: 2.5rem;
+    background: transparent;
+    font-size: 1rem;
+    border: none;
+  }
+
+  > button:first-child {
+    border-right: solid black 1px;
+  }
+
+  > button:last-child {
+    border-left: solid black 1px;
+  }
+
+  // page slider container
+  > div {
+    flex: 1;
+    margin: 0 1rem;
+
+    > datalist {
+      > option {
+        appearance: none;
+      }
+    }
+
+    > input {
+      width: 100%;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@media only screen and (min-width: variables.$breakpoint-desktop) {
+  .pagespace::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -31,8 +31,6 @@ const TopNav: FC = () => {
             </button>
           </Link>
         ))}
-        <button />
-        <button />
       </nav>
     </div>
   );

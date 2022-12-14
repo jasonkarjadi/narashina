@@ -3,16 +3,19 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import Link from "next/link";
 import { FC, ReactNode } from "react";
 import { noto_serif_jp, shippori_mincho, zen_antique } from "../constants";
+import { Params } from "../types";
+import BookUI from "./BookUI";
 import "./global.scss";
 import TopNav from "./TopNav";
 import Utils from "./Utils";
 config.autoAddCss = false;
 
-interface LayoutIndexProps {
-  children?: ReactNode;
+interface LayoutProps {
+  children: ReactNode;
+  params: Params;
 }
 
-const LayoutIndex: FC<LayoutIndexProps> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <html
       lang="jp"
@@ -23,7 +26,9 @@ const LayoutIndex: FC<LayoutIndexProps> = ({ children }) => {
           <Link href="/">ならしな</Link>
           <TopNav />
         </header>
-        {children}
+        <main>
+          <BookUI>{children}</BookUI>
+        </main>
         <footer>
           <small>&copy; 2022 Jason Karjadi. All rights reserved</small>
         </footer>
@@ -33,4 +38,4 @@ const LayoutIndex: FC<LayoutIndexProps> = ({ children }) => {
   );
 };
 
-export default LayoutIndex;
+export default Layout;

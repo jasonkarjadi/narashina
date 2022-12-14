@@ -25,20 +25,18 @@
     top: 2.5rem;
     border-bottom: solid black 1px;
     z-index: 2;
-    flex-direction: row-reverse;
     width: 100%;
-    background: #9c4221;
 
     @media only screen and (min-width: variables.$breakpoint-desktop) {
       display: flex;
       position: static;
       border-bottom: none;
-      width: 20rem;
-      justify-content: space-evenly;
+      // width: 20rem;
+      // justify-content: space-evenly;
     }
 
     > button {
-      background: #9c4221;
+      background: variables.$color-three;
       border: none;
       font-family: var(--font-noto-serif-jp), serif;
       height: 2.5rem;
@@ -54,6 +52,7 @@
         border-left: none;
         width: 4.5rem;
         flex: initial;
+        background-color: transparent;
       }
 
       > .navkanji {
