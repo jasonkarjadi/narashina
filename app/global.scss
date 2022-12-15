@@ -123,10 +123,6 @@ input {
   display: none;
 }
 
-.zen_antique {
-  font-family: var(--font-zen-antique), serif;
-}
-
 .noto_serif_jp {
   font-family: var(--font-noto-serif-jp), serif;
 }
@@ -203,18 +199,18 @@ body {
     background: variables.$color-three;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    padding: 0 0.75rem;
   }
 
   header {
     border-bottom: 1px solid black;
-    padding: 0 0.75rem;
+    overflow-x: auto;
 
-    > a {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      font-family: var(--font-zen-antique), serif;
+    a,
+    span {
+      font-family: var(--font-noto-serif-jp), serif;
+      font-weight: bold;
+      white-space: nowrap;
     }
   }
 
@@ -226,7 +222,6 @@ body {
 
   footer {
     border-top: 1px solid black;
-    padding: 0 0.75rem;
   }
 }
 
@@ -239,14 +234,28 @@ body {
 
 .adjustbar {
   border-bottom: solid black 1px;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 0.75rem;
 
-  > label {
+  label {
     margin-right: 0.5rem;
     font-family: var(--font-noto-serif-jp), serif;
   }
-  > select + label {
-    margin-left: 2rem;
+
+  select {
+    flex: 1;
+  }
+
+  select + label {
+    margin-left: 1rem;
+  }
+
+  @media only screen and (min-width: variables.$breakpoint-desktop) {
+    justify-content: center;
+
+    select {
+      flex: 0;
+    }
   }
 }
 
@@ -348,7 +357,8 @@ body {
 }
 
 @media only screen and (min-width: variables.$breakpoint-desktop) {
-  .pagespace::-webkit-scrollbar {
+  .pagespace::-webkit-scrollbar,
+  header::-webkit-scrollbar {
     display: none;
   }
 }

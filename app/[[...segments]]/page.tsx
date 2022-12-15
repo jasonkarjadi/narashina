@@ -14,7 +14,8 @@ const Page: FC<PageProps> = ({ params }) => {
   const [mod, setMod] = useState(0);
 
   const pages = data.find(
-    (datum) => JSON.stringify(params.id) === JSON.stringify(datum.id)
+    ({ slug }) =>
+      JSON.stringify(params.segments) === JSON.stringify(slug?.segments)
   )?.pages;
 
   const maxLimit = pages && pages.length - 2 + (pages.length % 2);
@@ -22,8 +23,8 @@ const Page: FC<PageProps> = ({ params }) => {
   return (
     <>
       <div className="pagewrap">
-        <div>{pages?.[mod + 1]}</div>
-        <div>{pages?.[mod]}</div>
+        <div>{pages?.[mod + 1]?.content}</div>
+        <div>{pages?.[mod]?.content}</div>
       </div>
       <div className="pagenav">
         <BookNavBtn modState={[mod, setMod]} limit={maxLimit} />
@@ -40,7 +41,7 @@ const Page: FC<PageProps> = ({ params }) => {
 };
 
 export const generateStaticParams = () => {
-  return data.map((datum) => ({ ...datum }));
+  return data.map(({ slug }) => ({ segments: slug?.segments }));
 };
 
 export default Page;

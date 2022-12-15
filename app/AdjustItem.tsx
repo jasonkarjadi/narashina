@@ -1,5 +1,3 @@
-"use client";
-
 import { ChangeEvent, Dispatch, FC, SetStateAction } from "react";
 
 interface AdjustItemProps {
@@ -9,16 +7,16 @@ interface AdjustItemProps {
 }
 
 const AdjustItem: FC<AdjustItemProps> = ({ labelText, values, setState }) => {
-  const changeValState = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setState(e.target.value.toLowerCase().replaceAll(" ", "_"));
   };
 
   return (
     <>
       <label htmlFor={labelText}>{labelText}</label>
-      <select id={labelText} onChange={changeValState}>
-        {values.map((val, id) => (
-          <option key={id} value={val}>
+      <select id={labelText} onChange={handleChange}>
+        {values.map((val) => (
+          <option key={val} value={val}>
             {val}
           </option>
         ))}

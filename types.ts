@@ -28,5 +28,5 @@ export type Book = {
 };
 
 export type Params = {
-  [key: string]: string | string[] | undefined;
+  [key: string]: string[] | undefined;
 };
