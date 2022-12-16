@@ -1,17 +1,11 @@
 import { FC } from "react";
-import { Params } from "../../types";
-import DefaultTags from "../DefaultTags";
 
-interface HeadProps {
-  params: Params;
-}
-
-const Head: FC<HeadProps> = ({ params }) => {
-  const { id } = params;
-
+const Head: FC = () => {
   return (
     <>
-      <DefaultTags />
+      <meta charSet="UTF-8" />
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>執筆書庫「ならしな」</title>
     </>
   );

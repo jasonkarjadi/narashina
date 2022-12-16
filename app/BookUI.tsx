@@ -13,7 +13,7 @@ const BookUI: FC<BookUIProps> = ({ children }) => {
 
   return (
     <>
-      <div className="adjustbar">
+      {/* <div className="adjustbar">
         <AdjustItem
           labelText="書体"
           values={["Noto Serif JP", "Shippori Mincho"]}
@@ -24,7 +24,7 @@ const BookUI: FC<BookUIProps> = ({ children }) => {
           values={["黒字白紙", "白字黒紙"]}
           setState={setColorScheme}
         />
-      </div>
+      </div> */}
       <div className={`flex-1 flex flex-col ${fontFamily} ${colorScheme}`}>
         {children}
       </div>

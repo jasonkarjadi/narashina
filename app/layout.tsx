@@ -5,7 +5,9 @@ import { FC, ReactNode } from "react";
 import { noto_serif_jp, shippori_mincho } from "../constants";
 import BookUI from "./BookUI";
 import Breadcrumb from "./Breadcrumb";
-import "./global.scss";
+import "./reset.scss";
+import "./styles.scss";
+import "./utility.scss";
 import Utils from "./Utils";
 config.autoAddCss = false;
 
@@ -27,9 +29,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         <main>
           <BookUI>{children}</BookUI>
         </main>
-        <footer>
+        {/* <footer>
           <small>&copy; 2022 Jason Karjadi. All rights reserved</small>
-        </footer>
+        </footer> */}
         <Utils />
       </body>
     </html>

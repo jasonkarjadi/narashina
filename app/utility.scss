@@ -1,0 +1,96 @@
+// Layout //
+
+.flex {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+// Flexbox & Grid //
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+// Spacing //
+
+.m-auto {
+  margin: auto;
+}
+
+// Typography //
+
+.noto_serif_jp {
+  font-family: var(--font-noto-serif-jp), serif;
+}
+
+.shippori_mincho {
+  font-family: var(--font-shippori-mincho), serif;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.font-normal {
+  font-weight: normal;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-end {
+  text-align: end;
+}
+
+// Borders //
+
+.border-5 {
+  border-width: 5px;
+}
+
+.border-r-5 {
+  border-right-width: 5px;
+}
+
+.border-solid {
+  border-style: solid;
+}
+
+// Custom //
+
+.autofill-dots {
+  border-left-style: dotted;
+  border-left-width: 2px;
+  display: inline-block;
+}

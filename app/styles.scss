@@ -1,0 +1,180 @@
+@use "variables.module";
+
+$padding-x: 0 1.5rem;
+
+html,
+body {
+  background-color: variables.$color-six;
+}
+
+body {
+  min-height: 100vh;
+  min-height: var(--doc-height);
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (min-width: variables.$breakpoint-desktop) {
+    min-height: 100vh;
+  }
+
+  header,
+  footer,
+  .adjustbar,
+  .pagenav {
+    background-color: variables.$color-oldbook;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    padding: $padding-x;
+  }
+
+  header {
+    border-bottom: 1px solid black;
+    overflow-x: auto;
+
+    a,
+    span {
+      font-family: var(--font-noto-serif-jp), serif;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer {
+    border-top: 1px solid black;
+  }
+}
+
+.adjustbar {
+  border-bottom: solid black 1px;
+  justify-content: space-between;
+
+  label {
+    margin-right: 0.5rem;
+    font-family: var(--font-noto-serif-jp), serif;
+  }
+
+  select {
+    flex: 1;
+  }
+
+  select + label {
+    margin-left: 1rem;
+  }
+
+  @media only screen and (min-width: variables.$breakpoint-desktop) {
+    justify-content: center;
+
+    select {
+      flex: 0;
+    }
+  }
+}
+
+.pagewrap {
+  flex: 1;
+  overflow-x: auto;
+  display: flex;
+  position: relative;
+
+  // book page
+  > div {
+    position: relative;
+    min-width: var(--bookpage-width);
+
+    // book paper
+    > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      writing-mode: vertical-rl;
+      white-space: pre-wrap;
+      border-style: none solid;
+      border-width: 1px;
+      z-index: 1;
+    }
+  }
+
+  > div:first-child {
+    margin-left: auto;
+  }
+
+  > div:last-child {
+    margin-right: auto;
+  }
+}
+
+.黒字白紙 {
+  .pagewrap {
+    > div {
+      > div {
+        color: variables.$color-fontblack;
+        background-color: variables.$color-paperwhite;
+        border-color: variables.$color-fontblack;
+      }
+    }
+  }
+}
+
+.白字黒紙 {
+  .pagewrap {
+    > div {
+      > div {
+        color: variables.$color-fontwhite;
+        background-color: variables.$color-paperblack;
+        border-color: variables.$color-fontwhite;
+      }
+    }
+  }
+}
+
+// page nav button
+.booknavbtn {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  border: none;
+  flex: 1 0 3rem;
+  color: variables.$color-fontwhite;
+  position: sticky;
+  z-index: 2;
+}
+
+.booknavbtn:first-child {
+  left: 0;
+}
+
+.booknavbtn:last-child {
+  right: 0;
+}
+
+.pagenav {
+  border-top: solid black 1px;
+
+  // datalist {
+  //   option {
+  //     appearance: none;
+  //   }
+  // }
+
+  input {
+    width: 100%;
+    transform: rotate(180deg);
+    margin: 0;
+  }
+  // }
+}
+
+@media only screen and (min-width: variables.$breakpoint-desktop) {
+  .pagespace::-webkit-scrollbar,
+  header::-webkit-scrollbar {
+    display: none;
+  }
+}

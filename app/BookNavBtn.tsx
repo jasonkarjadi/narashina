@@ -9,15 +9,17 @@ interface BookNavBtnProps {
 
 const BookNavBtn: FC<BookNavBtnProps> = ({ modState, limit }) => {
   const [mod, setMod] = modState;
-  const [ariaLabel, isDisabled, btnIcon, handleClick] = limit
-    ? ["Next", mod >= limit, faCaretLeft, (val: number) => val + 2]
-    : ["Previous", mod <= 0, faCaretRight, (val: number) => val - 2];
+  const [ariaLabel, isDisabled, btnIcon, diffValue] = limit
+    ? ["Next", mod >= limit, faCaretLeft, 2]
+    : ["Previous", mod <= 0, faCaretRight, -2];
+  const handleClick = () => setMod((mod) => mod + diffValue);
 
   return (
     <button
-      onClick={() => setMod(handleClick)}
-      disabled={isDisabled}
+      className="booknavbtn"
       aria-label={`Flip To ${ariaLabel} Page`}
+      disabled={isDisabled}
+      onClick={handleClick}
     >
       <FontAwesomeIcon icon={btnIcon} />
     </button>

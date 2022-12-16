@@ -9,9 +9,11 @@ interface SliderProps {
 
 const Slider: FC<SliderProps> = ({ value, max, marks, handleChange }) => {
   return (
-    <div>
+    <>
       <datalist id="bookmarks">
-        {marks && marks.map((mark) => <option key={mark} value={mark} />)}
+        {marks?.map((mark) => (
+          <option key={mark} value={mark} />
+        ))}
       </datalist>
       <input
         type="range"
@@ -21,7 +23,8 @@ const Slider: FC<SliderProps> = ({ value, max, marks, handleChange }) => {
         list="bookmarks"
         onChange={handleChange}
       />
-    </div>
+      {/* add pages length and current page */}
+    </>
   );
 };
 

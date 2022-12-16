@@ -23,18 +23,18 @@ const Page: FC<PageProps> = ({ params }) => {
   return (
     <>
       <div className="pagewrap">
+        <BookNavBtn modState={[mod, setMod]} limit={maxLimit} />
         <div>{pages?.[mod + 1]?.content}</div>
         <div>{pages?.[mod]?.content}</div>
+        <BookNavBtn modState={[mod, setMod]} />
       </div>
       <div className="pagenav">
-        <BookNavBtn modState={[mod, setMod]} limit={maxLimit} />
         <Slider
           value={mod}
           max={maxLimit}
           // marks={marks}
           handleChange={(e) => setMod(parseInt(e.target.value))}
         />
-        <BookNavBtn modState={[mod, setMod]} />
       </div>
     </>
   );
